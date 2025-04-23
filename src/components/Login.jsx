@@ -1,48 +1,33 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    const matchedUser = users.find(
-      (user) => user.username === username && user.password === password
-    );
-
-    if (matchedUser) {
-      localStorage.setItem('username', username);
-      navigate('/dashboard');
-    } else {
-      alert('Invalid username or password');
-    }
+    // Simulate successful login
+    console.log("Login successful");
+    navigate("/dashboard"); // Navigate to the Dashboard after login
   };
-
+  
   return (
-    <div className="form-container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Enter username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-title">Welcome Back to TaskFlow</h2>
+        <form onSubmit={handleLogin}>
+          <input type="email" placeholder="Email" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit" className="login-btn">Login</button>
+        </form>
+        <p className="login-footer">
+          Don't have an account?{" "}
+          <span className="signup-link" onClick={() => navigate("/signup")}>
+            Sign Up
+          </span>
+        </p>
+      </div>
     </div>
   );
 };

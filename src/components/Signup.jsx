@@ -1,52 +1,34 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 const Signup = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Get users from localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    // Check if username already exists
-    const userExists = users.some(user => user.username === username);
-    if (userExists) {
-      alert('Username already exists. Please choose another one.');
-      return;
-    }
-
-    // Save new user
-    users.push({ username, password });
-    localStorage.setItem('users', JSON.stringify(users));
-
-    alert('Sign Up successful!');
-    navigate('/login');
+    // Here you can add your signup logic
+    console.log("Sign up submitted");
   };
 
   return (
-    <div className="form-container">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSignup}>
-        <input
-          type="text"
-          placeholder="Choose a username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Create a password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Sign Up</button>
-      </form>
+    <div className="signup-container">
+      <div className="signup-card">
+        <h2 className="signup-title">Create a TaskFlow Account</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Full Name" required />
+          <input type="email" placeholder="Email" required />
+          <input type="password" placeholder="Password" required />
+          <input type="password" placeholder="Confirm Password" required />
+          <button type="submit" className="signup-btn">Sign Up</button>
+        </form>
+        <p className="signup-footer">
+          Already have an account?{" "}
+          <span className="login-link" onClick={() => navigate("/login")}>
+            Login
+          </span>
+        </p>
+      </div>
     </div>
   );
 };
