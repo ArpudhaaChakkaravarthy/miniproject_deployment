@@ -4,7 +4,7 @@ import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
-import './app.css';
+import './App.css';
 
 function App() {
   return (

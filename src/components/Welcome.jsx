@@ -6,7 +6,7 @@ const Welcome = () => {
 
   return (
     <div className="welcome-container">
-      <h1>Welcome to Task Manager</h1>
+      <h2>Welcome to Task Manager</h2>
       <div className="btn-group">
         <button onClick={() => navigate('/login')}>Login</button>
         <button onClick={() => navigate('/signup')}>Sign Up</button>
